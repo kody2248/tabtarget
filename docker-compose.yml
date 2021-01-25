@@ -1,0 +1,54 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  angular: # name of the first service
+    build: angular-client # specify the directory of the Dockerfile
+    ports:
+      - "4200:4200" # specify port forewarding
+    volumes:
+      - ./angular-client:/app # this will enable changes made to the angular app reflect in the container
+    links:
+        - express
+    networks:
+        - webappnetwork
+
+  express: #name of the second service
+    build: express-server # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forewarding
+    volumes:
+      - ./express-server:/server 
+    depends_on:
+        - mongo
+    networks:
+        - webappnetwork
+
+  # mongoexpress:
+  #       image: mongo-express
+  #       environment:
+  #           - ME_CONFIG_MONGODB_SERVER=mongo
+  #           - ME_CONFIG_MONGODB_PORT=27017
+  #           - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+  #       container_name: mongo-express
+  #       volumes:
+  #           - ./data-node:/data/db
+  #       ports:
+  #           - 8081:8081
+  #       networks:
+  #           - webappnetwork
+
+  mongo:
+        image: mongo
+        restart: always
+        container_name: mongodb
+        volumes:
+            - ./data-node:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --noauth
+        networks:
+            - webappnetwork
+networks:
+    webappnetwork:
+        driver: bridge

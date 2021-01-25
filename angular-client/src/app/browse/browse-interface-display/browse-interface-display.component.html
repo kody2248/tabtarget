@@ -1,0 +1,71 @@
+<div class="row">
+  <div
+    class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12"
+    *ngFor="let interface of interfaces">
+    <div
+    class="interface-item"
+    [attr.data-id]="interface._id"
+    >
+
+      <div class="interface-header-wrap d-flex">
+
+        <div class="interface-title d-flex">
+
+          <a [routerLink]="['/user/bob']">{{interface.name}}</a>
+
+        </div>
+
+        <div class="d-flex">
+
+          <div class="interface-user">
+
+            <p>User: {{interface.user.name}}</p>
+
+          </div>
+
+          <div class="interface-date ml-auto">
+
+            <p>Date: <a [routerLink]="['/user/bob']">{{interface.date.modified | date }}</a></p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="browse-preview">
+        <img [src]="interface.images[0]" />
+      </div>
+
+      <div class="d-flex">
+
+        <div class="interface-tags">
+
+          <span
+          *ngFor="let tag of interface.tags"
+          [ngStyle]="{color: tag.tagColor}"
+          >
+            {{tag.name}}
+          </span>
+
+        </div>
+
+        <div class="interface-rating ml-auto">
+
+          <p>Rating: {{interface.favorites}}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<mat-paginator
+[length]="pagination.length"
+[pageSize]="pagination.pageSize"
+[pageSizeOptions]="pagination.pageSizeOptions"
+(page)="populatePage($event)"
+showFirstLastButtons>
+</mat-paginator>

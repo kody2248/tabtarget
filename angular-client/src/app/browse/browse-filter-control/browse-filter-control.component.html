@@ -1,0 +1,52 @@
+<div class="sidebar-class-wrap">
+<div
+      class="sidebar-class sidebar-item d-flex"
+      *ngFor="let tag of orderedTags"
+    >
+
+      <div
+        class="sidebar-class-inner d-flex"
+        [ngClass]="{'active': ( isActive(tag._id) && isParent(tag._id)) || isChildActive( tag._id ) }"
+
+        (click) = "updateFilter($event,tag._id)"
+      >
+
+        <div class="sidebar-class-text-wrap d-flex">
+
+          <div class="d-flex flex-row">
+
+            <p [ngStyle]="{'color': tag.tagColor }" >
+              {{tag.name}}
+            </p>
+
+          </div>
+
+          <div class="sidebar-spec-wrap d-flex">
+
+            <div
+            class="sidebar-spec-item d-flex sidebar-class-filter"
+            [ngClass]="{'active': isActive(tag._id) }"
+            (click) = "updateFilter($event,tag._id)"
+            >
+
+              All
+
+            </div>
+
+            <div
+            class="sidebar-spec-item d-flex sidebar-class-filter"
+            *ngFor="let child of tag.children"
+            [ngClass]="{'active': isActive(child._id) && !isParent(child._id)}"
+            (click) = "updateFilter($event,child._id)"
+            >
+
+              {{child.name}}
+
+            </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

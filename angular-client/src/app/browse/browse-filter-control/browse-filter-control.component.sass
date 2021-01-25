@@ -1,0 +1,121 @@
+@import '../../../styles.sass'
+
+// .filter-item,
+// .filter-child
+//   cursor: pointer
+
+// .filter-container
+//   display: flex
+//   flex-wrap: wrap
+//   flex-direction: row
+//   div.filter-item
+//     flex-shrink: 0
+//     display: flex
+//     flex: 1
+//     border: 1px solid
+//     padding: 5px
+//     margin: 5px
+//     text-align: center
+//     flex-direction: column
+
+//     &.active .filter-child
+//       display: flex
+
+//   div.filter-child
+//     display: none
+//   p
+//     color: rgb(255, 255, 255)
+//     font-size: 12px
+//     margin: 0
+//   img
+//     height: 40px
+//     width: 40px
+//     border-radius: 50%
+//     margin: 0 auto
+//   ul
+//     list-style: none
+//     display: flex
+//     flex-direction: row
+
+//     li
+//       display: flex
+
+
+.sidebar-title
+  padding:5px 10px
+  color: #fff
+
+.sidebar-class-wrap
+  flex-direction: row
+  color: #fff
+  border-right:1px solid darken($bgColor,5%)
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2)
+  display: flex
+
+  .sidebar-item
+  border-top: 1px solid darken($bgColor,3%)
+  border-bottom: 1px solid lighten($bgColor,3%)
+  //width: 10%
+
+  p
+    margin: 0
+
+  .sidebar-class-inner
+    padding:3px 5px 10px 10px
+    flex-direction: row
+    transition: background 250ms ease-in
+
+    &:hover,
+    &.active
+      cursor: pointer
+      background: lighten($bgColor,10%)
+
+    p
+      font-size: 14px
+      text-transform: uppercase
+      font-weight: bold
+      letter-spacing: 1px
+
+  .sidebar-class-text-wrap
+    flex-direction: column
+    width: 100%
+
+  .sidebar-spec-wrap
+    flex-direction: row
+    flex-wrap: wrap
+    margin-left: -5px
+
+  .sidebar-class-filter
+    line-height: 1em
+    font-size: 14px
+    transition: all 250ms ease-in
+    border-radius: 5px
+    padding: 5px
+
+    &:hover,
+    &.active
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
+
+    &:hover
+      background: lighten($bgColor,30%)
+
+    &.active
+      background: $secondaryColor
+
+  .sidebar-spec-item
+    margin: 0 5px 0 0
+
+.sidebar-search
+  padding: 10px 10px
+
+  label
+    color: lighten($bgColor,30%)
+
+  input
+    background: lighten($bgColor,10%)
+    border: 1px solid lighten($bgColor,20%)
+    font-size: 14px
+    padding: 5px 10px
+
+    &::placeholder
+      color: lighten($bgColor,30%)
